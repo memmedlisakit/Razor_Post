@@ -1,0 +1,71 @@
+﻿@page
+@model Razor_app.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form asp-page-handler="Create" method="post">
+                <div class="form-group">
+                    <input asp-for="@Model.Employee.FirstName" placeholder="First Name" class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <input asp-for="@Model.Employee.LastName" placeholder="Last Name" class="form-control" type="text" />
+                </div>
+                <div class="form-group">
+                    <select class="form-control" asp-for="@Model.Employee.PositionId">
+                        <option value="0">
+                            Web Developer
+                        </option>
+                        <option value="1">
+                            Desktop Developer
+                        </option>
+                        <option value="2">
+                            Mobile Developer
+                        </option>
+                    </select>
+                </div>
+
+                <input type="submit" value="Save Info" class="btn-primary" />
+            </form>
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br /> 
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Employee emp in Model.Employees)
+                    {
+                    <tr>
+                        <td>@emp.Id</td>
+                        <td>@emp.FirstName</td>
+                        <td>@emp.LastName</td>
+                        <td>@Model.Positions[emp.PositionId]</td>
+                    </tr>
+                    } 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
